@@ -1,0 +1,14 @@
+{
+  "name": "nekorigram-web",
+  "version": "0.1.0",
+  "description": "NekoriGram Web — Telegram-подобный веб-мессенджер (первая версия)",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "GPL-2.0",
+  "dependencies": {
+    "ws": "^8.23.0"
+  }
+}

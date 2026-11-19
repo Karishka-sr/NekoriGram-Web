@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NekoriGram Web</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2333a1de'/%3E%3Cpath d='M7 17l7 3 2.5 7 4-13.5L7 17z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Auth screen -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-card">
+      <div class="auth-logo">✈</div>
+      <h1>NekoriGram</h1>
+      <p class="auth-subtitle">Первая версия веб-мессенджера</p>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Вход</button>
+        <button class="tab" data-tab="register">Регистрация</button>
+      </div>
+
+      <form id="register-form" class="auth-form" hidden>
+        <input name="phone" placeholder="Номер телефона, напр. +79991234567" autocomplete="tel">
+        <div class="row">
+          <input name="first_name" placeholder="Имя" autocomplete="given-name">
+          <input name="last_name" placeholder="Фамилия" autocomplete="family-name">
+        </div>
+        <input name="username" placeholder="@username (необязательно)">
+        <input name="password" type="password" placeholder="Пароль" autocomplete="new-password">
+        <button type="submit" class="btn primary">Создать аккаунт</button>
+      </form>
+
+      <form id="login-form" class="auth-form">
+        <input name="login" placeholder="Номер телефона или @username" autocomplete="username">
+        <input name="password" type="password" placeholder="Пароль" autocomplete="current-password">
+        <button type="submit" class="btn primary">Войти</button>
+      </form>
+
+      <div id="auth-error" class="auth-error" hidden></div>
+    </div>
+  </div>
+
+  <!-- Main app screen -->
+  <div id="app-screen" class="screen" hidden>
+    <aside id="sidebar">
+      <header class="sidebar-header">
+        <div class="profile-btn" id="profile-btn" title="Профиль">
+          <div class="avatar" id="me-avatar"></div>
+          <span class="name" id="me-name"></span>
+        </div>
+        <div class="header-actions">
+          <button id="new-chat-btn" class="icon-btn" title="Новое сообщение">✏️</button>
+        </div>
+      </header>
+
+      <div class="search-box">
+        <input id="search-input" type="text" placeholder="Поиск">
+        <button id="search-users-btn" class="icon-btn" title="Найти людей">🔍</button>
+      </div>
+
+      <div id="chat-list" class="chat-list"></div>
+    </aside>
+
+    <main id="chat-area" class="chat-area">
+      <div id="empty-state" class="empty-state">
+        <div class="empty-logo">✈</div>
+        <h2>NekoriGram Web</h2>
+        <p>Выберите чат слева или начните новый.</p>
+      </div>
+
+      <div id="chat-view" hidden>
+        <header class="chat-header">
+          <div class="chat-title">
+            <div class="avatar" id="chat-avatar"></div>
+            <div>
+              <div class="name" id="chat-name"></div>
+              <div class="status" id="chat-status"></div>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button id="leave-chat-btn" class="icon-btn danger-btn" title="Выйти из чата">🚪</button>
+          </div>
+        </header>
+
+        <div id="messages" class="messages"></div>
+
+        <div class="composer">
+          <button id="emoji-btn" class="icon-btn" title="Смайлик">🙂</button>
+          <textarea id="message-input" rows="1" placeholder="Сообщение"></textarea>
+          <button id="send-btn" class="send-btn" title="Отправить">➤</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New chat modal -->
+  <div id="modal-overlay" class="overlay" hidden>
+    <div class="modal">
+      <h3 id="modal-title">Новое сообщение</h3>
+      <input id="user-search-input" type="text" placeholder="Имя или @username">
+      <div id="user-results" class="user-results"></div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn">Отмена</button>
+        <button id="modal-create" class="btn primary" hidden>Начать чат</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emoji palette -->
+  <div id="emoji-palette" class="emoji-palette" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
